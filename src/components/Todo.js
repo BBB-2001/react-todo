@@ -26,7 +26,7 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
       key={index}
     >
       <div key={todo.id} onClick={() => completeTodo(todo.id)}>
-        {todo.text}
+        {todo.description}
       </div>
       <div className="icons">
         <RiCloseCircleLine

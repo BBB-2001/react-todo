@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
+import axios from "axios";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+  console.log(todos);
+
+  const fetchTodos = async () => {
+    try {
+      const response = await axios.get("http://192.168.1.37:4000/todos");
+      console.log(response);
+      setTodos(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
